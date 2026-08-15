@@ -1,5 +1,9 @@
 # iyh
 
+<p align="center">
+  <img src="Resources/AppIcon.png" alt="iyh icon" width="128">
+</p>
+
 Native macOS menu bar utility that converts text typed with the wrong keyboard layout.
 
 ## How it works
