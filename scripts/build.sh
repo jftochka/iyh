@@ -5,7 +5,7 @@ script_dir="${0:A:h}"
 project_dir="${script_dir:h}"
 build_dir="${project_dir}/build"
 dist_dir="${project_dir}/dist"
-app_dir="${dist_dir}/[eq.app"
+app_dir="${dist_dir}/iyh.app"
 xcode_developer_dir="/Applications/Xcode.app/Contents/Developer"
 swift_compiler="${xcode_developer_dir}/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
 module_cache="${build_dir}/ModuleCache"
@@ -36,19 +36,19 @@ for architecture in x86_64 arm64; do
         -module-cache-path "${module_cache}" \
         "${sources[@]}" \
         "${frameworks[@]}" \
-        -o "${build_dir}/[eq-${architecture}"
+        -o "${build_dir}/iyh-${architecture}"
 done
 
 lipo -create \
-    "${build_dir}/[eq-x86_64" \
-    "${build_dir}/[eq-arm64" \
-    -output "${app_dir}/Contents/MacOS/[eq"
+    "${build_dir}/iyh-x86_64" \
+    "${build_dir}/iyh-arm64" \
+    -output "${app_dir}/Contents/MacOS/iyh"
 
 cp "${project_dir}/Resources/Info.plist" "${app_dir}/Contents/Info.plist"
 cp "${project_dir}/Resources/AppIcon.icns" "${app_dir}/Contents/Resources/AppIcon.icns"
 print -n 'APPL????' > "${app_dir}/Contents/PkgInfo"
 
 codesign --force --sign - --timestamp=none "${app_dir}"
-"${app_dir}/Contents/MacOS/[eq" --self-test
+"${app_dir}/Contents/MacOS/iyh" --self-test
 
 print "Built ${app_dir}"
